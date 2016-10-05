@@ -4,4 +4,5 @@
 * Maybe allow default parameters.
 * Add Project to Maven repository, fix dependencies.
 * Add Project to continuous integration build.
+* Add support for other views, such as string template, velocity etc.
  
