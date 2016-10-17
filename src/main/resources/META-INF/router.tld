@@ -12,7 +12,7 @@
 	<tag>
 		<name>reverse</name>
 		<tagclass>spring.router.mvc.tags.jsp.ReverseRouteTag</tagclass>
-		<bodycontent></bodycontent>
+		<bodycontent>empty</bodycontent>
 		<info>Reverses a route</info>
 		<attribute>
 			<name>controller</name>
@@ -28,7 +28,7 @@
 	<tag>
 		<name>reverseByName</name>
 		<tagclass>spring.router.mvc.tags.jsp.ReverseRouteByNameTag</tagclass>
-		<bodycontent></bodycontent>
+		<bodycontent>empty</bodycontent>
 		<info>Reverses a route by name</info>
 		<attribute>
 			<name>name</name>
