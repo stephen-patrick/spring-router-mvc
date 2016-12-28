@@ -1,5 +1,5 @@
 # TODO
-* Consider adding support for a routes file that supplements the java configuration of the router.
+* Consider adding support for a routes file that supplements the java configuration of the router using java file watcher.
 * Add a Rest Link builder. 
 * Maybe allow default parameters.
 * Add Project to Maven repository, fix dependencies.
