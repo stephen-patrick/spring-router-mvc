@@ -6,8 +6,7 @@ import static org.easymock.EasyMock.replay;
 
 import javax.servlet.http.HttpServletRequest;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import spring.router.mvc.Http.HttpRequestWrapper;

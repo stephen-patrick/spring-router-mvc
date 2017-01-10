@@ -124,8 +124,7 @@ To reverse a route by controller and action.
 		
 		<a href="<route:reverse controller="homeController" action="index" greeting="Hello" />">Home</a>
 		
-		
-		
+
 
 ## Configuration
 The router can be configured using the following XML configuration:
