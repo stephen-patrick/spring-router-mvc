@@ -64,8 +64,8 @@ class RoutesBuilderImpl implements RoutesBuilder {
 
 		routesCollection.add(route);
 
-		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("Router: Added %s ", route.toString()));
+		if (logger.isInfoEnabled()) {
+			logger.info(String.format("Router: Added %s ", route.toString()));
 		}
 
 		return route;
