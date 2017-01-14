@@ -22,7 +22,8 @@ class SpringRouterSupport {
 	private static final Logger logger = LoggerFactory
 			.getLogger(SpringRouterSupport.class);
 
-	private final ConcurrentMap<String, HandlerMethod> handlerMethodCache = new ConcurrentReferenceHashMap<String, HandlerMethod>(
+	private final ConcurrentMap<String, HandlerMethod> 
+		handlerMethodCache = new ConcurrentReferenceHashMap<String, HandlerMethod>(
 			256);
 
 	private RouteControllers controllers;

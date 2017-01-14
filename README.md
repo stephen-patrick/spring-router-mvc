@@ -125,6 +125,25 @@ To reverse a route by controller and action.
 		<a href="<route:reverse controller="homeController" action="index" greeting="Hello" />">Home</a>
 		
 
+## Thymeleaf View Integration
+Custom Thymeleaf expressions are provided for reversing routes
+To use these expression at the dialect to the template engine.
+
+		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+		templateEngine.addDialect(new RouterExpressionDialect());
+		
+To reverse a route by name:
+
+		<a th:href="${#router.reverseByName('login')}">Login</a>	
+
+
+To reverse a route by controller and action.
+		
+		<a th:href="${#router.reverse(controller,action)}" />">Login</a>
+		
+Note the above expressions also take an additional Map<String,Object> parameter to set the route parameters.
+
+
 
 ## Configuration
 The router can be configured using the following XML configuration:

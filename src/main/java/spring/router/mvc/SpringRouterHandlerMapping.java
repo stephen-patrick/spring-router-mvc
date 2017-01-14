@@ -41,9 +41,7 @@ public class SpringRouterHandlerMapping extends AbstractHandlerMapping {
 				return;
 			}
 		}
-
-		super.initApplicationContext();
-
+		
 		routerSupport = new SpringRouterSupport(configuration);
 		routerSupport.configure(getApplicationContext());
 
@@ -51,6 +49,9 @@ public class SpringRouterHandlerMapping extends AbstractHandlerMapping {
 			logger.info("Spring Router: RouterHanderMapping init complete");
 		}
 	}
+	
+	
+	
 
 	@Override
 	protected Object getHandlerInternal(HttpServletRequest request)
