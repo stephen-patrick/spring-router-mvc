@@ -218,7 +218,32 @@ The router can be configured using the following XML configuration:
 						</bean>
 					</property>
 		</bean>
-
+		
+Java Configuration Example:
+		
+		@Configuration
+		@EnableWebMvc
+		@ComponentScan(includeFilters = {
+			@org.springframework.context.annotation.ComponentScan.Filter(type = FilterType.ANNOTATION, value 				= org.springframework.stereotype.Controller.class)})
+		public static class AppWebConfiguration extends WebMvcConfigurerAdapter {
+			
+			@Bean
+			public HandlerMapping handlerMapping() {
+				SpringRouterHandlerMapping handlerMapping = new SpringRouterHandlerMapping();
+				List<RoutesConfig> routesConfig = new LinkedList<RoutesConfig>();
+				routesConfig.add(new AppMvcConfig());
+	
+				SpringRouterConfiguration configuration = new SpringRouterConfiguration();
+				configuration.setEnabled(true);
+				configuration.setStrict(true);
+				configuration.setRouteConfigurations(routesConfig);
+	
+				handlerMapping.setConfiguration(configuration);
+				handlerMapping.setInterceptors(appInterceptor());
+	
+				return handlerMapping;
+			}
+		}
 
 There is no limit to the number of route configuration classes you can add.  To add a configuration add a bean to the routeConfigurations property as shown above.
 
