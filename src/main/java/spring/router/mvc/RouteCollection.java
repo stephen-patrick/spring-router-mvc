@@ -146,11 +146,11 @@ class RouteCollection {
 	}
 
 	private String createRouteKey(String name) {
-		return name.toUpperCase();
+		return name;
 	}
 
 	private String createRouteKey(String controller, String action) {
-		return controller + "." + action.toUpperCase();
+		return controller + "." + action;
 	}
 	
 	

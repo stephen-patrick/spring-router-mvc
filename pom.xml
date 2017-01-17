@@ -14,7 +14,7 @@
 		<easymock.version>3.4</easymock.version>
 		<log4j.version>1.2.17</log4j.version>
 		<thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
-
+		<commons.io.version>2.4</commons.io.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -59,8 +59,13 @@
 	</dependencyManagement>
 
 
-
 	<dependencies>
+		
+		<dependency>
+    		<groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+    		<version>${commons.io.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -127,7 +127,7 @@ To reverse a route by controller and action.
 
 ## Thymeleaf View Integration
 Custom Thymeleaf expressions are provided for reversing routes
-To use these expression at the dialect to the template engine.
+To use these expressions add the dialect to the template engine.
 
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.addDialect(new RouterExpressionDialect());
@@ -142,6 +142,62 @@ To reverse a route by controller and action.
 		<a th:href="${#router.reverse(controller,action)}" />">Login</a>
 		
 Note the above expressions also take an additional Map<String,Object> parameter to set the route parameters.
+
+
+## Client Routes Generation
+The router provides support for generating a client side route specification.  For example to generate a simple routes.js containing a key, value object mapping (route name to pattern) a JsRoutesFileWriter can be configured.  For example to configure with Spring Boot:
+
+
+		@Component("appConfigurationProperites")
+		@ConfigurationProperties(prefix = "app")
+		public static class AppConfigurationProperites {
+			private boolean writeClientRoutes = true;
+			private String clientRoutesOutputDirectory = "src/client/app/js/routes";
+			
+			
+			public boolean isWriteClientRoutes() {
+				return writeClientRoutes;
+			}
+
+			public void setWriteClientRoutes(boolean writeClientRoutes) {
+				this.writeClientRoutes = writeClientRoutes;
+			}
+	
+			public String getClientRoutesOutputDirectory() {
+				return clientRoutesOutputDirectory;
+			}
+	
+			public void setClientRoutesOutputDirectory(String clientRoutesOutputDirectory) {
+				this.clientRoutesOutputDirectory = clientRoutesOutputDirectory;
+			}
+		}
+		
+		
+		static class ApplicationInitializer implements CommandLineRunner {
+
+			@Autowired
+			private AppConfigurationProperites appConfigurationProperties;
+
+			@Override
+			public void run(String... arg0) throws Exception {
+				initApp();
+			}
+
+
+			private void initApp() {
+
+				//outputs a routes file named "routes.js" to "src/client/app/js/routes"
+				JsRoutesFileWriter clientRoutesWriter = 
+						new JsRoutesFileWriterImpl(appConfigurationProperties.isWriteClientRoutes(), 
+							JsRoutesRequireJsNamePatternWriter.createWorkingDirectoryRelativeRoutesFile(
+									appConfigurationProperties.getClientRoutesOutputDirectory()));
+				
+				clientRoutesWriter.writeRoutesFile();
+
+			}
+		}
+
+The routes file can then be used from your client code.
 
 
 
