@@ -1,5 +1,7 @@
 package spring.router.mvc;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import spring.router.mvc.Http.HttpRequestWrapper;
@@ -142,7 +144,11 @@ public class RouteHelper {
 			RouteParameterCollection params, UrlOuputOptions outputOptions) {
 		return resolver.pattern(controller, action, params, outputOptions);
 	}
-
+	
+	public static Map<String, Route> getRouteMappingsByName() {
+		return resolver.getRouteMappingsByName();
+	}
+	
 	static RouteResolver getResolver() {
 		return resolver;
 	}

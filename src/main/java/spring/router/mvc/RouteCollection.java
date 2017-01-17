@@ -1,5 +1,6 @@
 package spring.router.mvc;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -151,5 +152,11 @@ class RouteCollection {
 	private String createRouteKey(String controller, String action) {
 		return controller + "." + action.toUpperCase();
 	}
+	
+	
+	public Map<String, Route> getRouteMappingsByName() {
+		return Collections.unmodifiableMap(routesNameMapping);
+	}
+	
 
 }

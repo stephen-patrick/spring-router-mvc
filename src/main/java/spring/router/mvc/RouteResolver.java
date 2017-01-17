@@ -1,5 +1,7 @@
 package spring.router.mvc;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import spring.router.mvc.RouteOutputOptions.UrlOuputOptions;
@@ -45,4 +47,9 @@ public interface RouteResolver {
 
 	public String pattern(String controller, String action,
 			RouteParameterCollection params, UrlOuputOptions outputOptions);
+	
+	
+	public Map<String,Route> getRouteMappingsByName();
+	
+	
 }

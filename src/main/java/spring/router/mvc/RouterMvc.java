@@ -1,5 +1,7 @@
 package spring.router.mvc;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import spring.router.mvc.Http.HttpRequestWrapper;
@@ -164,6 +166,11 @@ class RouterMvc implements Router {
 	private String routePattern(String controllerName, String action,
 			RouteParameterCollection params) {
 		return routesCollection.routePattern(controllerName, action, params);
+	}
+
+
+	public Map<String, Route> getRouteMappingsByName() {
+		return routesCollection.getRouteMappingsByName();
 	}
 
 	public RouteCollection getRoutesCollection() {
