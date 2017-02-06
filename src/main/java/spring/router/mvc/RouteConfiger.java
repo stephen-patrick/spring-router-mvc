@@ -3,23 +3,23 @@ package spring.router.mvc;
 import java.util.LinkedList;
 import java.util.List;
 
-import spring.router.mvc.constraint.RouteConstraint;
+import spring.router.mvc.constraint.RouteConstraints;
 
-public class RouteConfig {
+public class RouteConfiger {
 
 	private String controller;
 	private String name;
 	private String path;
 	private String action;
 	private List<HttpMethod> methods = new LinkedList<HttpMethod>();
-	private List<RouteConstraint> constriants = new LinkedList<RouteConstraint>();
+	private RouteConstraints constriants = new RouteConstraints();
 	private boolean enabled = true;
 
 	public String getController() {
 		return controller;
 	}
 
-	public RouteConfig setController(String controller) {
+	public RouteConfiger setController(String controller) {
 		this.controller = controller;
 		return this;
 	}
@@ -28,7 +28,7 @@ public class RouteConfig {
 		return name;
 	}
 
-	public RouteConfig setName(String name) {
+	public RouteConfiger setName(String name) {
 		this.name = name;
 		return this;
 	}
@@ -37,7 +37,7 @@ public class RouteConfig {
 		return path;
 	}
 
-	public RouteConfig setPath(String path) {
+	public RouteConfiger setPath(String path) {
 		this.path = path;
 		return this;
 	}
@@ -46,7 +46,7 @@ public class RouteConfig {
 		return action;
 	}
 
-	public RouteConfig setAction(String action) {
+	public RouteConfiger setAction(String action) {
 		this.action = action;
 		return this;
 	}
@@ -55,30 +55,29 @@ public class RouteConfig {
 		return methods;
 	}
 
-	public RouteConfig setMethods(List<HttpMethod> methods) {
+	public RouteConfiger setMethods(List<HttpMethod> methods) {
 		this.methods = methods;
 		return this;
 	}
 
-	public List<RouteConstraint> getConstriants() {
+	public RouteConstraints getConstriants() {
 		return constriants;
 	}
 
-	public RouteConfig setConstriants(List<RouteConstraint> constriants) {
+	public void setConstriants(RouteConstraints constriants) {
 		this.constriants = constriants;
-		return this;
 	}
 
 	public boolean isEnabled() {
 		return enabled;
 	}
 
-	public RouteConfig setEnabled(boolean enabled) {
+	public RouteConfiger setEnabled(boolean enabled) {
 		this.enabled = enabled;
 		return this;
 	}
 
-	public RouteConfig addHttpMethod(HttpMethod... methods) {
+	public RouteConfiger addHttpMethod(HttpMethod... methods) {
 		for (HttpMethod method : methods) {
 			this.methods.add(method);
 		}
@@ -86,13 +85,4 @@ public class RouteConfig {
 		return this;
 	}
 
-	public RouteConfig addConstraint(RouteConstraint... constraints) {
-
-		for (RouteConstraint c : constraints) {
-			this.constriants.add(c);
-		}
-
-		return this;
-
-	}
 }

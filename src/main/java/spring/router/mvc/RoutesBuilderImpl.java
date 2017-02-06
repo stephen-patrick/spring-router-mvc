@@ -43,6 +43,29 @@ class RoutesBuilderImpl implements RoutesBuilder {
 
 	}
 
+	
+	@Override
+	public void addApi(RouteApiConfiger routesApi) {
+		if(routesApi.getListApi().isEnabled()) {
+			addRouteFromConfig(routesApi.getListApi());
+			addRouteFromConfig(routesApi.getEditApi());
+			addRouteFromConfig(routesApi.getGetApi());
+			addRouteFromConfig(routesApi.getAddApi());
+		}
+	}
+	
+	
+	private void addRouteFromConfig(RouteConfiger config) {
+		if(config.isEnabled()) {
+			return;
+		}
+		
+		add(config.getName(), config.getPath(),
+				config.getController(), config.getAction(), config.getConstriants(), 
+				config.getMethods().toArray(new HttpMethod[0]));
+		
+	}
+	
 	@Override
 	public Route add(String name, String path, String controller,
 			String action, RouteConstraints constraints, HttpMethod... methods) {

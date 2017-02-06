@@ -2,14 +2,14 @@ package spring.router.mvc;
 
 import org.springframework.util.StringUtils;
 
-public class RouteApiBuilder {
+public class RouteApiConfiger {
 
-	private RouteConfig listApi;
-	private RouteConfig getApi;
-	private RouteConfig editApi;
-	private RouteConfig addApi;
+	private RouteConfiger listApi;
+	private RouteConfiger getApi;
+	private RouteConfiger editApi;
+	private RouteConfiger addApi;
 
-	public RouteApiBuilder(String baseName, String controller, String collectionPath) {
+	public RouteApiConfiger(String baseName, String controller, String collectionPath) {
 		init(baseName, controller, collectionPath);
 	}
 
@@ -27,9 +27,9 @@ public class RouteApiBuilder {
 
 	}
 
-	private RouteConfig initRouteConfig(String baseName, String nameSuffix, String controller, String action,
+	private RouteConfiger initRouteConfig(String baseName, String nameSuffix, String controller, String action,
 			String path, HttpMethod... method) {
-		return new RouteConfig().setName(createRouteName(baseName, nameSuffix)).setAction(action)
+		return new RouteConfiger().setName(createRouteName(baseName, nameSuffix)).setAction(action)
 				.addHttpMethod(HttpMethod.GET).setController(controller).setPath(path);
 
 	}
@@ -39,19 +39,39 @@ public class RouteApiBuilder {
 
 	}
 
-	public RouteConfig getListApi() {
+	public RouteApiConfiger enableListApi(boolean enabled) {
+		listApi.setEnabled(enabled);
+		return this;
+	}
+	
+	public RouteApiConfiger enableEditApi(boolean enabled) {
+		editApi.setEnabled(enabled);
+		return this;
+	}
+	
+	public RouteApiConfiger enableAddApi(boolean enabled) {
+		addApi.setEnabled(enabled);
+		return this;
+	}
+
+	public RouteApiConfiger enableGetApi(boolean enabled) {
+		getApi.setEnabled(enabled);
+		return this;
+	}
+
+	public RouteConfiger getListApi() {
 		return listApi;
 	}
 
-	public RouteConfig getGetApi() {
+	public RouteConfiger getGetApi() {
 		return getApi;
 	}
 
-	public RouteConfig getEditApi() {
+	public RouteConfiger getEditApi() {
 		return editApi;
 	}
 
-	public RouteConfig getAddApi() {
+	public RouteConfiger getAddApi() {
 		return addApi;
 	}
 
