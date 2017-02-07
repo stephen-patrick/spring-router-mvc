@@ -12,6 +12,7 @@ public interface RoutesBuilder {
 	Route add(String name, String path, String controller, String action,
 			RouteConstraints constraints, HttpMethod... methods);
 	
+	void add(RouteConfiger configer);
 	void addApi(RouteApiConfiger routesApi);
 
 }

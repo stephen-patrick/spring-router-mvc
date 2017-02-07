@@ -1,13 +1,16 @@
 package spring.router.mvc;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.util.StringUtils;
 
-public class RouteApiConfiger {
+public class RouteApiConfiger implements RouteConfiger {
 
-	private RouteConfiger listApi;
-	private RouteConfiger getApi;
-	private RouteConfiger updateApi;
-	private RouteConfiger addApi;
+	private RouteConfigSpec listApi;
+	private RouteConfigSpec getApi;
+	private RouteConfigSpec updateApi;
+	private RouteConfigSpec addApi;
 
 	public RouteApiConfiger(Class<?> controller, String collectionPath) {
 		init(parseBaseNameFromCls(controller), controller.getSimpleName(), collectionPath);
@@ -46,9 +49,9 @@ public class RouteApiConfiger {
 
 	}
 
-	private RouteConfiger initRouteConfig(String baseName, String nameSuffix, String controller, String action,
+	private RouteConfigSpec initRouteConfig(String baseName, String nameSuffix, String controller, String action,
 			String path, HttpMethod... method) {
-		return new RouteConfiger().setName(createRouteName(baseName, nameSuffix)).setAction(action)
+		return new RouteConfigSpec().setName(createRouteName(baseName, nameSuffix)).setAction(action)
 				.addHttpMethod(method).setController(controller).setPath(path);
 
 	}
@@ -86,19 +89,19 @@ public class RouteApiConfiger {
 		return this;
 	}
 
-	public RouteConfiger getListApi() {
+	public RouteConfigSpec getListApi() {
 		return listApi;
 	}
 
-	public RouteConfiger getGetApi() {
+	public RouteConfigSpec getGetApi() {
 		return getApi;
 	}
 
-	public RouteConfiger getUpdateApi() {
+	public RouteConfigSpec getUpdateApi() {
 		return updateApi;
 	}
 
-	public RouteConfiger getAddApi() {
+	public RouteConfigSpec getAddApi() {
 		return addApi;
 	}
 
@@ -106,4 +109,13 @@ public class RouteApiConfiger {
 		return base + StringUtils.capitalize(suffix) + "Api";
 	}
 
+	@Override
+	public List<RouteConfigSpec> getRouteConfigs() {
+		List<RouteConfigSpec> specs = new LinkedList<RouteConfigSpec>();
+		specs.add(listApi);
+		specs.add(getApi);
+		specs.add(addApi);
+		specs.add(updateApi);
+		return specs;
+	}
 }
