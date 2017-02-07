@@ -6,7 +6,7 @@ public class RouteApiConfiger {
 
 	private RouteConfiger listApi;
 	private RouteConfiger getApi;
-	private RouteConfiger editApi;
+	private RouteConfiger updateApi;
 	private RouteConfiger addApi;
 
 	public RouteApiConfiger(String baseName, String controller, String collectionPath) {
@@ -21,7 +21,7 @@ public class RouteApiConfiger {
 		listApi = initRouteConfig(baseName, "list", controller, "list", collectionPath, HttpMethod.GET);
 		getApi = initRouteConfig(baseName, "get", controller, "get", appendPath(collectionPath, "/{id}"),
 				HttpMethod.GET);
-		editApi = initRouteConfig(baseName, "edit", controller, "edit", appendPath(collectionPath, "/{id}"),
+		updateApi = initRouteConfig(baseName, "update", controller, "update", appendPath(collectionPath, "/{id}"),
 				HttpMethod.POST);
 		addApi = initRouteConfig(baseName, "add", controller, "add", collectionPath, HttpMethod.POST);
 
@@ -30,12 +30,20 @@ public class RouteApiConfiger {
 	private RouteConfiger initRouteConfig(String baseName, String nameSuffix, String controller, String action,
 			String path, HttpMethod... method) {
 		return new RouteConfiger().setName(createRouteName(baseName, nameSuffix)).setAction(action)
-				.addHttpMethod(HttpMethod.GET).setController(controller).setPath(path);
+				.addHttpMethod(method).setController(controller).setPath(path);
 
 	}
 
 	private String appendPath(String base, String path) {
-		return base;
+		if(!base.endsWith("/")) {
+			base += "/";
+		}
+		
+		if(path.startsWith("/")) {
+			path = path.substring(1);
+		}
+		
+		return base + path;
 
 	}
 
@@ -44,8 +52,8 @@ public class RouteApiConfiger {
 		return this;
 	}
 	
-	public RouteApiConfiger enableEditApi(boolean enabled) {
-		editApi.setEnabled(enabled);
+	public RouteApiConfiger enableUpdateApi(boolean enabled) {
+		updateApi.setEnabled(enabled);
 		return this;
 	}
 	
@@ -67,8 +75,8 @@ public class RouteApiConfiger {
 		return getApi;
 	}
 
-	public RouteConfiger getEditApi() {
-		return editApi;
+	public RouteConfiger getUpdateApi() {
+		return updateApi;
 	}
 
 	public RouteConfiger getAddApi() {
