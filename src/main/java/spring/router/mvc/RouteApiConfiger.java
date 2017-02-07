@@ -9,6 +9,12 @@ public class RouteApiConfiger {
 	private RouteConfiger updateApi;
 	private RouteConfiger addApi;
 
+	public RouteApiConfiger(Class<?> controller, String collectionPath) {
+		init(parseBaseNameFromCls(controller), controller.getSimpleName(), collectionPath);
+	}
+	
+	
+	
 	public RouteApiConfiger(String baseName, String controller, String collectionPath) {
 		init(baseName, controller, collectionPath);
 	}
@@ -17,6 +23,19 @@ public class RouteApiConfiger {
 		initRoutes(baseName, controller, collectionPath);
 	}
 
+	private String parseBaseNameFromCls(Class<?> controller) {
+		String name = controller.getSimpleName();
+		
+		if(name.toLowerCase().indexOf("api") != -1) {
+			return StringUtils.uncapitalize(name.substring(0, name.toLowerCase().indexOf("api")));
+		}
+		
+		return StringUtils.uncapitalize(name);
+		
+		
+	}
+	
+	
 	private void initRoutes(String baseName, String controller, String collectionPath) {
 		listApi = initRouteConfig(baseName, "list", controller, "list", collectionPath, HttpMethod.GET);
 		getApi = initRouteConfig(baseName, "get", controller, "get", appendPath(collectionPath, "/{id}"),
