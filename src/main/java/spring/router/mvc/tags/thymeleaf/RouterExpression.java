@@ -17,6 +17,12 @@ public class RouterExpression {
 
 		return RouteHelper.reverse(controller, action, new RouteParameterCollection(params));
 	}
+	
+	public String reverse(String controller, String action, String paramCsv) {
+
+		return RouteHelper.reverse(controller, action, new RouteParameterCollection(fromCsvValue(paramCsv)));
+	}
+
 
 	public String reverseByName(String name) {
 		return RouteHelper.reverse(name);
