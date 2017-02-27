@@ -143,6 +143,11 @@ To reverse a route by controller and action.
 		
 Note the above expressions also take an additional Map<String,Object> parameter to set the route parameters.
 
+The above expressions also take a csv string parameter which represents route parameters.
+
+		<a class="on" th:href="${#router.reverseByName(routeName, 'paramName=' + paramValue)}">Login</a>
+
+
 
 ## Client Routes Generation
 The router provides support for generating a client side route specification.  For example to generate a simple routes.js containing a key, value object mapping (route name to pattern) a JsRoutesFileWriter can be configured.  For example to configure with Spring Boot:
