@@ -123,7 +123,11 @@ To reverse a route by name:
 To reverse a route by controller and action.
 		
 		<a href="<route:reverse controller="homeController" action="index" greeting="Hello" />">Home</a>
-		
+
+To obtain a route pattern by name:
+
+		<a href="<route:patternByName name="home" />">Home</a>	
+	
 
 ## Thymeleaf View Integration
 Custom Thymeleaf expressions are provided for reversing routes
