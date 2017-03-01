@@ -36,6 +36,18 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
+	
+	<tag>
+		<name>patternByName</name>
+		<tagclass>spring.router.mvc.tags.jsp.PatternByNameTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>Reverses a route pattern by name</info>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
+	</tag>
 
 
 
