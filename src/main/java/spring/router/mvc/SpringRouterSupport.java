@@ -90,6 +90,7 @@ class SpringRouterSupport {
 				.getRoute().getName());
 
 		if (handlerMethod != null) {
+			setRequestAttributesFromRoute(routeDetail, request);
 			return handlerMethod;
 		}
 
@@ -121,12 +122,16 @@ class SpringRouterSupport {
 		handlerMethodCache.putIfAbsent(routeDetail.getRoute().getName()
 				.toLowerCase(), handlerMethod);
 
+		setRequestAttributesFromRoute(routeDetail, request);
+
+		return handlerMethod;
+	}
+
+	private void setRequestAttributesFromRoute(RouteDetail routeDetail, HttpRequestWrapper request) {
 		request.setAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE,
 				routeDetail.getParamCollection().getValues());
 		request.setAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE,
 				routeDetail.getRoute().getPath());
-
-		return handlerMethod;
 	}
 
 	private void setControllers(ApplicationContext applicationContext) {
