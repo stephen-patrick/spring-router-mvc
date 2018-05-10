@@ -154,6 +154,8 @@ public class JsRouter {
 				return;
 			}
 
+			Map<String, Route> routes = RouteHelper.getRouteMappingsByName();
+		
 			jsWriter.writeRoutes(RouteHelper.getRouteMappingsByName());
 
 		}

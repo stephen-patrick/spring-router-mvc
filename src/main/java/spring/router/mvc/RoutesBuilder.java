@@ -13,6 +13,6 @@ public interface RoutesBuilder {
 			RouteConstraints constraints, HttpMethod... methods);
 	
 	void add(RouteConfiger configer);
-	void addApi(RouteApiConfiger routesApi);
+	void addApi(RouteConfiger routesApi);
 
 }

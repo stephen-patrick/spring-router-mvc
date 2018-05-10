@@ -49,7 +49,7 @@ class RoutesBuilderImpl implements RoutesBuilder {
 	}
 
 	@Override
-	public void addApi(RouteApiConfiger routesApi) {
+	public void addApi(RouteConfiger routesApi) {
 		addRoutesWithConfiger(routesApi);
 		
 	}
