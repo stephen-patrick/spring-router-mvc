@@ -11,19 +11,21 @@ class RoutesBuilderImpl implements RoutesBuilder {
 	private static final Logger logger = LoggerFactory
 			.getLogger(RoutesBuilderImpl.class);
 
+	private RoutesConfig routeConfig;
 	private RouteCollection routesCollection;
 	private RouteParser routeParser;
 	private RouteControllers controllers;
 	private boolean validate;
 
-	public RoutesBuilderImpl(RouteCollection routesCollection,
+	public RoutesBuilderImpl(RoutesConfig config, RouteCollection routesCollection,
 			RouteParser parser, RouteControllers controllers) {
-		this(routesCollection, parser, controllers, false);
+		this(config,routesCollection, parser, controllers, false);
 
 	}
 
-	public RoutesBuilderImpl(RouteCollection routesCollection,
+	public RoutesBuilderImpl(RoutesConfig config, RouteCollection routesCollection,
 			RouteParser parser, RouteControllers controllers, boolean validating) {
+		this.routeConfig = config;
 		this.routesCollection = routesCollection;
 		this.routeParser = parser;
 		this.controllers = controllers;
@@ -91,7 +93,7 @@ class RoutesBuilderImpl implements RoutesBuilder {
 		validateAction(route);
 		validateParameterConstraints(route, parsedRoute);
 
-		routesCollection.add(route);
+		routesCollection.add(routeConfig.name(),route);
 
 		if (logger.isInfoEnabled()) {
 			logger.info(String.format("Router: Added %s ", route.toString()));

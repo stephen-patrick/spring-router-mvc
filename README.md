@@ -153,60 +153,33 @@ The above expressions also take a csv string parameter which represents route pa
 
 
 
-## Client Routes Generation
-The router provides support for generating a client side route specification.  For example to generate a simple routes.js containing a key, value object mapping (route name to pattern) a JsRoutesFileWriter can be configured.  For example to configure with Spring Boot:
+## JavaScript Client Routes Generation
+The router provides support for generating JavaScript route files.  
+By default it will generate a routes file containing a routes configuration object for each RoutesConfig.
+The generated JavaScript route files can be used to configure a client side JavaScript router / Route Resolver for use in client side applications.  The Routes generation is configurable and could be used to output routes file when running in development mode.   The following is an example of configuring the Client Routes Generation
 
-
-		@Component("appConfigurationProperites")
-		@ConfigurationProperties(prefix = "app")
-		public static class AppConfigurationProperites {
-			private boolean writeClientRoutes = true;
-			private String clientRoutesOutputDirectory = "src/client/app/js/routes";
-			
-			
-			public boolean isWriteClientRoutes() {
-				return writeClientRoutes;
-			}
-
-			public void setWriteClientRoutes(boolean writeClientRoutes) {
-				this.writeClientRoutes = writeClientRoutes;
-			}
+```
+	JsRouterConfiguration jsRouterConfig = new JsRouterConfiguration();
+	jsRouterConfig.setOutputDirectory(properties.getClientRoutesOutputDirectory());
+	jsRouterConfig.setWriteRoutes(properties.isWriteClientRoutes());
 	
-			public String getClientRoutesOutputDirectory() {
-				return clientRoutesOutputDirectory;
-			}
-	
-			public void setClientRoutesOutputDirectory(String clientRoutesOutputDirectory) {
-				this.clientRoutesOutputDirectory = clientRoutesOutputDirectory;
-			}
+	new JsRoutesFileWriterImpl(jsRouterConfig).writeRoutes();
+
+```
+
+For each RoutesConfig a JavaScript file will be produced containing an object of the form:
+
+```
+	var routesConfig = {
+		name: '<RoutesConfig_Name>',
+		routes: {
+			'<ROUTE_NAME':'ROUTE_PATTERN',
+			...
 		}
-		
-		
-		static class ApplicationInitializer implements CommandLineRunner {
+	};
 
-			@Autowired
-			private AppConfigurationProperites appConfigurationProperties;
+```
 
-			@Override
-			public void run(String... arg0) throws Exception {
-				initApp();
-			}
-
-
-			private void initApp() {
-
-				//outputs a routes file named "routes.js" to "src/client/app/js/routes"
-				JsRoutesFileWriter clientRoutesWriter = 
-						new JsRoutesFileWriterImpl(appConfigurationProperties.isWriteClientRoutes(), 
-							JsRoutesRequireJsNamePatternWriter.createWorkingDirectoryRelativeRoutesFile(
-									appConfigurationProperties.getClientRoutesOutputDirectory()));
-				
-				clientRoutesWriter.writeRoutesFile();
-
-			}
-		}
-
-The routes file can then be used from your client code.
 
 
 

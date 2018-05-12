@@ -3,6 +3,18 @@ package spring.router.mvc;
 public class RouterExceptions {
 	
 	@SuppressWarnings("serial")
+	public static class RouteConfigException extends RuntimeException {
+
+		public RouteConfigException(String message) {
+			this(message, null);
+		}
+
+		public RouteConfigException(String message, Throwable t) {
+			super(message, t);
+		}
+	}
+	
+	@SuppressWarnings("serial")
 	public static class RouteException extends RuntimeException {
 
 		public RouteException(String message) {

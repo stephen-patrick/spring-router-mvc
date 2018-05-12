@@ -50,6 +50,7 @@ public interface RouteResolver {
 	
 	
 	public Map<String,Route> getRouteMappingsByName();
+	public Map<String,Map<String, Route>> getConfigRouteMappingsByName();
 	
 	
 }

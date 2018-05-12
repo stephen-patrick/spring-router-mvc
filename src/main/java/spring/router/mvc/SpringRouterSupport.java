@@ -16,6 +16,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerMapping;
 
 import spring.router.mvc.Http.HttpRequestWrapper;
+import spring.router.mvc.RouterExceptions.RouteConfigException;
 
 class SpringRouterSupport {
 
@@ -50,18 +51,22 @@ class SpringRouterSupport {
 		router = new RouterMvc(routesCollection);
 		RouteHelper.setResolver(router);
 
-		RoutesBuilder builder = new RoutesBuilderImpl(routesCollection,
-				routeParser, controllers, configuration.isStrict());
-
+	
 		int index = 1;
 		for (RoutesConfig config : routesConfigurations) {
+			if(RouteUtils.isNullOrEmpty(config.name())) {
+				throw new RouteConfigException("RoutesConfig with index " + String.valueOf(index -1) + " name is required");
+			}
+			
 			if (logger.isInfoEnabled()) {
 				logger.info(String.format(
 						"Adding routes for configuration: %s",
-						RouteUtils.isNullOrEmpty(config.name()) ? "Routes Config "
-								+ String.valueOf(index)
-								: config.name()));
+						config.name()));
 			}
+			
+			RoutesBuilder builder = new RoutesBuilderImpl(config, routesCollection,
+					routeParser, controllers, configuration.isStrict());
+			
 
 			config.registerRoutes(builder);
 			index++;

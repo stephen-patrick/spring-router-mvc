@@ -172,6 +172,11 @@ class RouterMvc implements Router {
 	public Map<String, Route> getRouteMappingsByName() {
 		return routesCollection.getRouteMappingsByName();
 	}
+	
+	@Override
+	public Map<String, Map<String, Route>> getConfigRouteMappingsByName() {
+		return routesCollection.getConfigRouteMappingsByName();
+	}
 
 	public RouteCollection getRoutesCollection() {
 		return routesCollection;

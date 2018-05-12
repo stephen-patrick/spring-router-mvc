@@ -1,6 +1,7 @@
 package spring.router.mvc;
 
 import static org.easymock.EasyMock.anyObject;
+import static org.easymock.EasyMock.anyString;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.strictMock;
@@ -36,7 +37,23 @@ public class RoutesBuilderImplTest {
 		mockRoutesCollection = strictMock(RouteCollection.class);
 		mockRouteParser = strictMock(RouteParser.class);
 
-		routesBuilder = new RoutesBuilderImpl(mockRoutesCollection,
+		RoutesConfig routesConfig = new RoutesConfig() {
+			
+			@Override
+			public void registerRoutes(RoutesBuilder routes) {
+				
+				
+			}
+			
+			@Override
+			public String name() {
+				return "testRoutes";
+			}
+		};
+		
+		
+		
+		routesBuilder = new RoutesBuilderImpl(routesConfig,mockRoutesCollection,
 				mockRouteParser, new RouteControllers(
 						new HashMap<String, Object>()), false);
 
@@ -55,7 +72,7 @@ public class RoutesBuilderImplTest {
 				new RouteParsed(pathSegments));
 
 		expect(mockRoutesCollection.containsName("route1")).andReturn(false);
-		mockRoutesCollection.add(anyObject(Route.class));
+		mockRoutesCollection.add(anyString() ,anyObject(Route.class));
 
 		replay(mockRoutesCollection);
 		replay(mockRouteParser);

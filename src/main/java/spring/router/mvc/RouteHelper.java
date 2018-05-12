@@ -149,6 +149,10 @@ public class RouteHelper {
 		return resolver.getRouteMappingsByName();
 	}
 	
+	public static Map<String,Map<String, Route>> getConfigRouteMappingsByName() {
+		return resolver.getConfigRouteMappingsByName();
+	}
+	
 	static RouteResolver getResolver() {
 		return resolver;
 	}

@@ -14,9 +14,11 @@ class RouteCollection {
 	private final Map<String, Route> routesNameMapping;
 	private final Map<String, Route> routesActionMapping;
 
+	private final Map<String, Map<String, Route>> configRoutesNameMapping;
 	private final List<Route> routesList = new LinkedList<Route>();
 
 	public RouteCollection() {
+		configRoutesNameMapping = new HashMap<>();
 		routesNameMapping = new HashMap<String, Route>();
 		routesActionMapping = new HashMap<String, Route>();
 	}
@@ -50,17 +52,29 @@ class RouteCollection {
 	}
 
 	
-	public void add(Route route) {
+	public void add(String configName, Route route) {
 		if (!containsName(route.getName())) {
-			routesNameMapping.put(createRouteKey(route.getName()), route);
+			final String routeKey = createRouteKey(route.getName());
+			addRouteNameMappingForConfig(configName, routeKey, route);
+			routesNameMapping.put(routeKey, route);
 			routesActionMapping.put(
 					createRouteKey(route.getController(), route.getAction()),
 					route);
 			routesList.add(route);
 		}
-
 	}
-
+	
+	private void addRouteNameMappingForConfig(String configName, String routeKey, Route route) {
+		Map<String, Route> routesNameMapping = configRoutesNameMapping.get(configName);
+		
+		if(routesNameMapping==null) {
+			routesNameMapping = new HashMap<>();
+			configRoutesNameMapping.put(configName, routesNameMapping);
+		}
+		
+		routesNameMapping.put(routeKey, route);
+	}
+	
 	public RouteDetail matchRoute(HttpRequestWrapper request) {
 		for (Route route : routesList) {
 			RouteDetail routeDetail = route.match(request);
@@ -142,7 +156,6 @@ class RouteCollection {
 		}
 
 		return route.pattern(params);
-
 	}
 
 	private String createRouteKey(String name) {
@@ -153,10 +166,11 @@ class RouteCollection {
 		return controller + "." + action;
 	}
 	
-	
 	public Map<String, Route> getRouteMappingsByName() {
 		return Collections.unmodifiableMap(routesNameMapping);
 	}
 	
-
+	public Map<String,Map<String, Route>> getConfigRouteMappingsByName() {
+		return Collections.unmodifiableMap(configRoutesNameMapping);
+	}
 }
