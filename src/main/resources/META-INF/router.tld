@@ -11,7 +11,7 @@
 
 	<tag>
 		<name>reverse</name>
-		<tagclass>com.stephenenright.spring.router.mvc.tags.jsp.ReverseRouteTag</tagclass>
+		<tagclass>com.github.stephenenright.spring.router.mvc.tags.jsp.ReverseRouteTag</tagclass>
 		<bodycontent>empty</bodycontent>
 		<info>Reverses a route</info>
 		<attribute>
@@ -27,7 +27,7 @@
 
 	<tag>
 		<name>reverseByName</name>
-		<tagclass>com.stephenenright.spring.router.mvc.tags.jsp.ReverseRouteByNameTag</tagclass>
+		<tagclass>com.github.stephenenright.spring.router.mvc.tags.jsp.ReverseRouteByNameTag</tagclass>
 		<bodycontent>empty</bodycontent>
 		<info>Reverses a route by name</info>
 		<attribute>
@@ -39,7 +39,7 @@
 	
 	<tag>
 		<name>patternByName</name>
-		<tagclass>com.stephenenright.spring.router.mvc.tags.jsp.PatternByNameTag</tagclass>
+		<tagclass>com.github.stephenenright.spring.router.mvc.tags.jsp.PatternByNameTag</tagclass>
 		<bodycontent>empty</bodycontent>
 		<info>Reverses a route pattern by name</info>
 		<attribute>
