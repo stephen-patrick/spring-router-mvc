@@ -187,9 +187,9 @@ For each RoutesConfig a JavaScript file will be produced containing an object of
 The router can be configured using the following XML configuration:
 
 		<bean id="handlerMapping"
-		          class="spring.router.mvc.SpringRouterHandlerMapping">
+		          class="SpringRouterHandlerMapping">
 		          	<property name="configuration">
-						<bean class="spring.router.mvc.SpringRouterConfiguration" >
+						<bean class="SpringRouterConfiguration" >
 							<property name="enabled" value="true" />
 							<property name="strict" value="true" />
 							<property name="routeConfigurations">
