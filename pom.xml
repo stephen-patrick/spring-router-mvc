@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.stephenenright</groupId>
     <artifactId>spring-router</artifactId>
-    <version>1.0-RELEASE</version>
+    <version>1.0-SNAPSHOT</version>
     <name>Spring Router</name>
     <description>
         spring-router-mvc is a small, simple but pragmatic project.
