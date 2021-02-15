@@ -345,9 +345,9 @@
     </distributionManagement>
 
     <scm>
-        <url>https://github.com/stephenenright/java-type-mapper</url>
-        <connection>scm:git:git://github.com/stephenenright/java-type-mapper.git</connection>
-        <developerConnection>scm:git:git@github.com:stephenenright/java-type-mapper.git</developerConnection>
+        <url>https://github.com/stephenenright/spring-router-mvc</url>
+        <connection>scm:git:git://github.com/stephenenright/spring-router-mvc.git</connection>
+        <developerConnection>scm:git:git@github.com:stephenenright/spring-router-mvc.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 </project>
