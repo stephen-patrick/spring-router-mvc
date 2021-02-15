@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.stephenenright</groupId>
     <artifactId>spring-router</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Spring Router</name>
     <description>
         spring-router-mvc is a small, simple but pragmatic project.
@@ -12,7 +11,9 @@
     </description>
 
     <properties>
-        <maven.compile.source>1.8</maven.compile.source>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <servlet.version>3.0.1</servlet.version>
         <spring.version>4.1.6.RELEASE</spring.version>
         <junit.version>4.12</junit.version>
@@ -348,6 +349,6 @@
         <url>https://github.com/stephenenright/spring-router-mvc</url>
         <connection>scm:git:git://github.com/stephenenright/spring-router-mvc.git</connection>
         <developerConnection>scm:git:git@github.com:stephenenright/spring-router-mvc.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>spring-router-1.0</tag>
     </scm>
 </project>
