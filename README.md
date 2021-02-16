@@ -234,3 +234,14 @@ The strict property if set to true, will perform some extra validations and thro
 * if a route is added and no matching controller is found for the given controller name. 
 * if no matching public method is found with the name of the given action.
 * if parameter constraints are added for paramters that do not exist in the route pattern.  
+
+
+## Installation
+
+```
+<dependency>
+  <groupId>com.github.stephenenright</groupId>
+  <artifactId>spring-router</artifactId>
+  <version>1.1</version>
+</dependency>
+```
