@@ -9,6 +9,7 @@
         This project provides an alternative to the default routing mechanism provided by spring mvc. This project
         provides an API that supports adding routes and routing constraints to your application.
     </description>
+    <url>https://github.com/stephenenright/spring-router-mvc</url>
 
     <properties>
         <java.version>11</java.version>
